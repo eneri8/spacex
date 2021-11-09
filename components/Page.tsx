@@ -9,7 +9,7 @@ const Page = ({ children }: Props): JSX.Element => {
   return (
     <>
       <Header />
-      <Container maxW="100vw" centerContent>
+      <Container maxW="100vw" paddingTop="50" centerContent>
         { children }
       </Container>
     </>
