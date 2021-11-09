@@ -1,22 +1,38 @@
 import React from 'react';
-import { SimpleGrid, Input } from '@chakra-ui/react';
+import {
+  Container,
+  Input,
+  SimpleGrid,
+} from '@chakra-ui/react';
 import MissionCard, { Mission } from './MissionCard';
+import MissionDetailDialog from './MissionDetailModal'
 
 interface Props {
   missions: Mission[]
 } 
 
 const MissionList = ({ missions }: Props): JSX.Element => {
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = React.useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value);
+  const [selectedMission, setSelectedMission] = React.useState<Mission>();
 
   return (
     <>
-      <Input
-        value={search}
-        onChange={handleChange}
-        placeholder="Quick search"
-      />
+      {
+        !!selectedMission && (
+          <MissionDetailDialog
+            mission={selectedMission}
+            onClose={() => setSelectedMission(undefined)}
+          />
+        )
+      }
+      <Container width="100vw">
+        <Input
+          value={search}
+          onChange={handleChange}
+          placeholder="Quick search"
+        />
+      </Container>
       <SimpleGrid columns={[1, 2, 3, 4, 5]}>
         {
           missions.reduce((missionsToDisplay: JSX.Element[], mission: Mission) => {
@@ -32,6 +48,7 @@ const MissionList = ({ missions }: Props): JSX.Element => {
                   <MissionCard
                     key={mission.id}
                     mission={mission}
+                    onClick={() => setSelectedMission(mission)}
                   />
                 )
               ];
