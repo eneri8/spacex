@@ -1,5 +1,5 @@
-import { SimpleGrid, Container } from "@chakra-ui/react";
-import MissionCard, { Mission } from '../components/MissionCard';    
+import { SimpleGrid } from '@chakra-ui/react';
+import MissionCard, { Mission } from './MissionCard';
 
 interface Props {
   missions: Mission[]
