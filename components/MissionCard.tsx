@@ -20,13 +20,20 @@ export interface Mission {
 
 interface Props {
   mission: Mission;
+  onClick?(mission: Mission): void;
 }
 
-const imageUrl = 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80';
+export const imageUrl = 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2370&q=80';
 
-const MissionCard = ({ mission }: Props) => {
+const MissionCard = ({ onClick, mission }: Props) => {
+  const clickListener = (mission: Mission) => {
+    if (onClick) {
+      onClick(mission);
+    }
+  };
+
   return (
-    <Center py={6} margin={2}>
+    <Center py={6} margin={2} onClick={() => clickListener(mission)}>
       <Box
         maxW={'250px'}
         w={'full'}
