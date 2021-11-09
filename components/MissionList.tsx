@@ -12,13 +12,11 @@ const MissionList = ({ missions }: Props): JSX.Element => {
 
   return (
     <>
-      <SimpleGrid columns={[1]}>
-        <Input
-          value={search}
-          onChange={handleChange}
-          placeholder="Quick search"
-        />
-      </SimpleGrid>
+      <Input
+        value={search}
+        onChange={handleChange}
+        placeholder="Quick search"
+      />
       <SimpleGrid columns={[1, 2, 3, 4, 5]}>
         {
           missions.reduce((missionsToDisplay: JSX.Element[], mission: Mission) => {
